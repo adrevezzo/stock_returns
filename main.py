@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-from stockData import get_stock_prices
+from stockData import get_stock_prices, calc_returns
 import base64
 from io import BytesIO
 from matplotlib.figure import Figure
@@ -23,6 +23,7 @@ class GetStockData(FlaskForm):
     ticker = StringField('Stock Ticker', validators=[DataRequired()])
     start_date = StringField('Start Date (mm/dd/yyyy)', validators=[DataRequired()])
     end_date = StringField('End Date (mm/dd/yyyy)', validators=[DataRequired()])
+    ret_period = StringField('Return Period (days)', validators=[DataRequired()])
 
     submit = SubmitField("Get Data")
 
@@ -43,13 +44,25 @@ def get_stock_data():
         ticker = form.ticker.data
         start = form.start_date.data
         end = form.end_date.data
+        ret_per = int(form.ret_period.data)
         df = get_stock_prices(ticker, start, end)
+
+        df2, stdev, mean, nf_conf, nf_per = calc_returns(df=df, day_offset=ret_per)
 
 
         # Generate the figure **without using pyplot**.
         fig = Figure()
-        ax = fig.subplots()
-        ax.plot(df.index, df['Adj Close'], color='red')
+        ax1, ax2 = fig.subplots(2,1)
+
+        # Create Price Action Chart
+        ax1.set_title(f'{ticker.upper()} Closing Prices from {start} through {end}')
+        ax1.plot(df.index, df['Adj Close'], color='red')
+
+        ax2.set_title(f'Mean return is: {mean * 100: .2f}%\nLower 98% Conf return is: {nf_conf * 100: .2f}%'
+                      f'\n 98% Percentile return is: {nf_per * 100: .2f}%')
+        ax2.hist(df2['returns'], bins=30)
+
+        fig.tight_layout()
         # Convert plot to PNG image
         pngImage = BytesIO()
         FigureCanvas(fig).print_png(pngImage)
