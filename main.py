@@ -5,9 +5,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from stockData import get_stock_prices
-import io
-import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
+from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+
 
 
 app = Flask(__name__)
@@ -43,14 +45,20 @@ def get_stock_data():
         end = form.end_date.data
         df = get_stock_prices(ticker, start, end)
 
-        fig = plt.plot(df.index, df.Close, color='red')
 
-        output = io.BytesIO()
-        plot = FigureCanvas(fig).print_png(output)
-        # plot = Response(output.getvalue(), mimetype='image/png')
+        # Generate the figure **without using pyplot**.
+        fig = Figure()
+        ax = fig.subplots()
+        ax.plot(df.index, df.Close, color='red')
+        # Convert plot to PNG image
+        pngImage = BytesIO()
+        FigureCanvas(fig).print_png(pngImage)
 
+        # Encode PNG image to base64 string
+        img = "data:image/png;base64,"
+        img += base64.b64encode(pngImage.getvalue()).decode('utf8')
 
-        return render_template('chart.html', tick=ticker, plot=plot)
+        return render_template('chart.html', tick=ticker, plot=img)
 
 
     return render_template('search.html', form=form)
