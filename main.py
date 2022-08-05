@@ -49,7 +49,7 @@ def get_stock_data():
         # Generate the figure **without using pyplot**.
         fig = Figure()
         ax = fig.subplots()
-        ax.plot(df.index, df.Close, color='red')
+        ax.plot(df.index, df['Adj Close'], color='red')
         # Convert plot to PNG image
         pngImage = BytesIO()
         FigureCanvas(fig).print_png(pngImage)
