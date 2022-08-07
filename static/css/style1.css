@@ -1,0 +1,18 @@
+body {
+  background-color: lightblue;
+}
+
+img:not(.navbar-brand) {
+    height:50px;
+
+}
+
+.navbar {
+    position: relative;
+}
+
+.navbar-brand {
+    position: absolute;
+    margin-left: 50px !important;  /* 50% of your logo width */
+    display: block;
+}
