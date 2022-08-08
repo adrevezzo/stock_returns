@@ -2,7 +2,7 @@ body {
   background-color: lightblue;
 }
 
-img:not(.navbar-brand) {
+.navbar-brand img {
     height:50px;
 
 }
@@ -12,7 +12,8 @@ img:not(.navbar-brand) {
 }
 
 .navbar-brand {
-    position: absolute;
+   /* position: absolute;*/
     margin-left: 50px !important;  /* 50% of your logo width */
-    display: block;
+   /* display: block; */
+   padding: 0px;
 }
