@@ -9,11 +9,12 @@ import base64
 from io import BytesIO
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import creds
 
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'ldnumdc%^Yd34^Ugw2BN*4drg'
+app.config['SECRET_KEY'] = creds.FLASK_KEY
 Bootstrap(app)
 
 
