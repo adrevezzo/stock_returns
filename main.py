@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-from stockData import get_stock_prices, calc_returns
+from stockData import get_stock_prices, calc_returns, StockData
 import base64
 from io import BytesIO
 from matplotlib.figure import Figure
@@ -50,6 +50,10 @@ def get_stock_data():
 
         df2, stdev, mean, nf_conf, nf_per = calc_returns(df=df, day_offset=ret_per)
 
+        stock_prices = StockData(ticker.upper())
+        print(ticker)
+        cur_price = stock_prices.cur_price
+        print(cur_price)
 
         # Generate the figure **without using pyplot**.
         fig = Figure()
@@ -72,7 +76,7 @@ def get_stock_data():
         img = "data:image/png;base64,"
         img += base64.b64encode(pngImage.getvalue()).decode('utf8')
 
-        return render_template('chart.html', tick=ticker, plot=img)
+        return render_template('chart.html', tick=ticker, plot=img, cur_price=cur_price)
 
 
     return render_template('search.html', form=form)
