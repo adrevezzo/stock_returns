@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% import "bootstrap/wtf.html" as wtf %}
 
 
 {% block content %}
@@ -10,8 +10,16 @@
 
 
 </div>
-<div class="container text-center add">
-<a href="{{ url_for('get_stock_data') }}" class="button">Get Stock Data</a>
+
+<div class="content">
+    <h1 class="heading">Search for Stock with Valid Ticker Symbol</h1>
+
+    {{ wtf.quick_form(form, novalidate=True) }}
+
 </div>
+<!--<div class="container text-center add">-->
+<!--<a href="{{ url_for('get_stock_data') }}" class="button">Get Stock Data</a>-->
+
+<!--</div>-->
 
 {% endblock %}

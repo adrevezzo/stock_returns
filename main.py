@@ -31,14 +31,8 @@ class GetStockData(FlaskForm):
 
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
-
-
-    return render_template('index.html')
-
-@app.route("/stockdata", methods=['GET', 'POST'])
-def get_stock_data():
 
     form = GetStockData()
 
@@ -88,6 +82,15 @@ def get_stock_data():
                                 columns=['stats'])
 
         return render_template('chart.html', tick=ticker, plot=img, cur_price=cur_price, stats=stats_df)
+
+
+
+    return render_template('index.html', form=form)
+
+@app.route("/stockdata", methods=['GET', 'POST'])
+def get_stock_data():
+
+
 
 
     return render_template('search.html', form=form)
