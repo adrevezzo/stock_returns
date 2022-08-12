@@ -7,6 +7,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# sandbox file
+sandbox.py
+
+# credentials files
+creds.py
+
 # idea folder
 .idea/
 

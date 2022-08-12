@@ -4,16 +4,18 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-from stockData import get_stock_prices, calc_returns
+from stockData import StockData
 import base64
 from io import BytesIO
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import creds
+import pandas as pd
 
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'ldnumdc%^Yd34^Ugw2BN*4drg'
+app.config['SECRET_KEY'] = creds.FLASK_KEY
 Bootstrap(app)
 
 
@@ -45,9 +47,17 @@ def get_stock_data():
         start = form.start_date.data
         end = form.end_date.data
         ret_per = int(form.ret_period.data)
-        df = get_stock_prices(ticker, start, end)
 
-        df2, stdev, mean, nf_conf, nf_per = calc_returns(df=df, day_offset=ret_per)
+        # Create instance of StockData
+        stock = StockData(ticker.upper())
+
+        #Get Live Price
+        cur_price = stock.cur_price
+
+        # Get Historical Prices
+        df = stock.get_historical_prices(start, end)
+
+        df2, stdev, mean, nf_conf, nf_per, skew = stock.calc_returns(df=df, day_offset=ret_per)
 
 
         # Generate the figure **without using pyplot**.
@@ -58,8 +68,10 @@ def get_stock_data():
         ax1.set_title(f'{ticker.upper()} Closing Prices from {start} through {end}')
         ax1.plot(df.index, df['Adj Close'], color='#7AD9FF')
 
-        ax2.set_title(f'Mean return is: {mean * 100: .2f}%\nLower 98% Conf return is: {nf_conf * 100: .2f}%'
-                      f'\n 98% Percentile return is: {nf_per * 100: .2f}%')
+        # ax2.set_title(f'Mean return is: {mean * 100: .2f}%\nLower 98% Conf return is: {nf_conf * 100: .2f}%'
+        #               f'\n 98% Percentile return is: {nf_per * 100: .2f}%')
+
+        ax2.set_title(f'Distribution of {ret_per} Day Returns (Skew = {skew: .3f})')
         ax2.hist(df2['returns'], bins=30, color='lightsalmon', ec='black')
 
         fig.tight_layout()
@@ -71,7 +83,11 @@ def get_stock_data():
         img = "data:image/png;base64,"
         img += base64.b64encode(pngImage.getvalue()).decode('utf8')
 
-        return render_template('chart.html', tick=ticker, plot=img)
+        stats_df = pd.DataFrame((stdev, mean, nf_conf, nf_per, ret_per),
+                                index=['stdev', 'mean', 'nf_conf', 'nf_per', 'ret_per'],
+                                columns=['stats'])
+
+        return render_template('chart.html', tick=ticker, plot=img, cur_price=cur_price, stats=stats_df)
 
 
     return render_template('search.html', form=form)

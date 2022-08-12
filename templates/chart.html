@@ -6,10 +6,18 @@
 
 {% block content %}
 <div class="container">
-  <h1 class="heading">{{ tick.upper() }}</h1>
+  <h1 class="heading">{{ tick.upper() }}: Current Price is {{ cur_price }}</h1>
 
 
   <img src="{{ plot }}" alt="my plot">
+  <br>
+  <p>The Standard Deviation of {{ "%.0f" | format(stats.loc['ret_per']['stats']) }} day returns is {{ "%.2f" | format(stats.loc['stdev']['stats']*100) }}% </p>
+  <br>
+  <p>The Average of {{ "%.0f" | format(stats.loc['ret_per']['stats']) }} day returns is {{ "%.2f" | format(stats.loc['mean']['stats']*100) }}% </p>
+  <br>
+  <p>The 98% Confidence Lower Bound of {{ "%.0f" | format(stats.loc['ret_per']['stats']) }} day returns is {{ "%.2f" | format(stats.loc['nf_conf']['stats']*100) }}% </p>
+  <br>
+  <p>The Suggest Short Put Srike Price is approx. ${{ "%.0f" | format((1 - (-1*stats.loc['nf_conf']['stats'])) * cur_price) }} </p>
   <br>
   <a href="{{ url_for('get_stock_data') }}" class="button">Back to Stock Search Page</a>
 
