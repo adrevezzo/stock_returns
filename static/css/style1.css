@@ -1,5 +1,7 @@
 body {
-  background-color: lightblue;
+    font-family: Montserrat;
+    text-align: center;
+    background-color: lightblue;
 }
 
 .navbar-brand img {
@@ -8,12 +10,11 @@ body {
 }
 
 .navbar {
+    background-color: white;
     position: relative;
 }
 
 .navbar-brand {
-   /* position: absolute;*/
-    margin-left: 50px !important;  /* 50% of your logo width */
-   /* display: block; */
+   margin-left: 50px !important;  /* 50% of your logo width */
    padding: 0px;
 }

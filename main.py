@@ -91,11 +91,7 @@ def home():
 def get_stock_data():
 
 
-
-
     return render_template('search.html', form=form)
-
-
 
 
 if __name__ == '__main__':
