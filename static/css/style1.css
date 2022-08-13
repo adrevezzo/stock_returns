@@ -1,7 +1,49 @@
+/*
+fonts:
+font-family: 'Cinzel', serif;
+font-family: 'Sawarabi Mincho', serif;
+*/
+
 body {
-    font-family: Montserrat;
+    font-family: 'Sawarabi Mincho', serif;
     text-align: center;
-    background-color: lightblue;
+    background-color: #d1d1d1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sawarabi Mincho', serif;
+    font-weight: bold;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  color: #8f8f8f;
+}
+
+a {
+  color: #8f8f8f;
+  font-size: 1.25rem;
+}
+
+div.form-block {
+    margin: auto 25%;
+
+}
+
+div.chart-output {
+    margin: 75px auto 15px;
+}
+
+div.chart-data-output {
+    margin: 50px 25%;
+
+}
+
+div.chart-data-output h2 {
+    text-align: left;
 }
 
 .navbar-brand img {
@@ -10,11 +52,161 @@ body {
 }
 
 .navbar {
-    background-color: white;
+    background-color: lightsalmon;
     position: relative;
+    margin-bottom: 0px;
+
 }
 
 .navbar-brand {
-   margin-left: 50px !important;  /* 50% of your logo width */
+   /*margin-left: 50px !important;  /* 50% of your logo width */
    padding: 0px;
+}
+
+.navbar.container {
+    margin: 0px;
+}
+
+header.masthead {
+  margin-bottom: 50px;
+  background: no-repeat center center;
+  background-color: #868e96;
+  background-attachment: scroll;
+  position: relative;
+  background-size: cover;
+}
+
+header.masthead .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #212529;
+  opacity: 0.5;
+}
+
+header.masthead .page-heading,
+header.masthead .post-heading,
+header.masthead .site-heading {
+  padding: 200px 0 150px;
+  color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  header.masthead .page-heading,
+  header.masthead .post-heading,
+  header.masthead .site-heading {
+    padding: 200px 0;
+  }
+}
+
+
+header.masthead .site-heading {
+  text-align: center;
+}
+
+
+header.masthead .site-heading h1 {
+  font-size: 50px;
+  margin-top: 0;
+  font-family: 'Cinzel', serif;
+}
+
+
+header.masthead .site-heading .subheading {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.1;
+  display: block;
+  margin: 10px 0 0;
+  font-family: 'Cinzel', serif;
+}
+
+@media only screen and (min-width: 768px) {
+  header.masthead .site-heading h1 {
+    font-size: 80px;
+  }
+}
+
+
+#mainNav {
+  position: absolute;
+  border-bottom: 1px solid #e9ecef;
+  background-color: white;
+    font-family: 'Cinzel', serif;
+}
+
+#mainNav .navbar-brand {
+  font-weight: 800;
+  color: #343a40;
+}
+
+#mainNav .navbar-toggler {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 13px;
+  text-transform: uppercase;
+  color: #343a40;
+}
+
+#mainNav .navbar-nav > li.nav-item > a {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 992px) {
+  #mainNav {
+    border-bottom: 1px solid transparent;
+    background: transparent;
+  }
+  #mainNav .navbar-brand {
+    padding: 10px 20px;
+    color: #fff;
+  }
+  #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  #mainNav .navbar-nav > li.nav-item > a {
+    padding: 10px 20px;
+    color: #fff;
+  }
+  #mainNav .navbar-nav > li.nav-item > a:focus, #mainNav .navbar-nav > li.nav-item > a:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  #mainNav {
+    transition: background-color 0.2s;
+    /* Force Hardware Acceleration in WebKit */
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+  }
+  #mainNav.is-fixed {
+    /* when the user scrolls down, we hide the header right above the viewport */
+    position: fixed;
+    top: -67px;
+    transition: transform 0.2s;
+    border-bottom: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  #mainNav.is-fixed .navbar-brand {
+    color: #212529;
+  }
+  #mainNav.is-fixed .navbar-brand:focus, #mainNav.is-fixed .navbar-brand:hover {
+    color: #0085A1;
+  }
+  #mainNav.is-fixed .navbar-nav > li.nav-item > a {
+    color: #212529;
+  }
+  #mainNav.is-fixed .navbar-nav > li.nav-item > a:focus, #mainNav.is-fixed .navbar-nav > li.nav-item > a:hover {
+    color: #0085A1;
+  }
+  #mainNav.is-visible {
+    /* if the user changes the scrolling direction, we show the header */
+    transform: translate3d(0, 100%, 0);
+  }
 }

@@ -5,23 +5,30 @@
 {% block title %}Charting Page{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="chart-output">
   <h1 class="heading">{{ tick.upper() }}: Current Price is {{ cur_price }}</h1>
 
 
   <img src="{{ plot }}" alt="my plot">
-  <br>
-  <p>The Standard Deviation of {{ "%.0f" | format(stats.loc['ret_per']['stats']) }} day returns is {{ "%.2f" | format(stats.loc['stdev']['stats']*100) }}% </p>
-  <br>
-  <p>The Average of {{ "%.0f" | format(stats.loc['ret_per']['stats']) }} day returns is {{ "%.2f" | format(stats.loc['mean']['stats']*100) }}% </p>
-  <br>
-  <p>The 98% Confidence Lower Bound of {{ "%.0f" | format(stats.loc['ret_per']['stats']) }} day returns is {{ "%.2f" | format(stats.loc['nf_conf']['stats']*100) }}% </p>
-  <br>
-  <p>The Suggest Short Put Srike Price is approx. ${{ "%.0f" | format((1 - (-1*stats.loc['nf_conf']['stats'])) * cur_price) }} </p>
-  <br>
-  <a href="{{ url_for('home') }}" class="button">Back to Stock Search Page</a>
+</div>
 
+<div class="chart-data-output">
+  <h2>The Standard Deviation of {{ "%.0f" | format(stats.loc['ret_per']['stats']) }} day returns is {{ "%.2f" | format(stats.loc['stdev']['stats']*100) }}% </h2>
+  <br>
+  <h2>The Average of {{ "%.0f" | format(stats.loc['ret_per']['stats']) }} day returns is {{ "%.2f" | format(stats.loc['mean']['stats']*100) }}% </h2>
+  <br>
+  <h2>The 98% Confidence Lower Bound of {{ "%.0f" | format(stats.loc['ret_per']['stats']) }} day returns is {{ "%.2f" | format(stats.loc['nf_conf']['stats']*100) }}% </h2>
+  <br>
+  <h2>The Suggest Short Put Srike Price is approx. ${{ "%.0f" | format((1 - (-1*stats.loc['nf_conf']['stats'])) * cur_price) }} </h2>
+  <br>
+
+</div>
+
+<div class="chart-return-home-btn">
+  <a href="{{ url_for('home') }}" class="button">Back to Stock Search Page</a>
 </div>
 
 
 {% endblock %}
+
+</body>

@@ -3,23 +3,32 @@
 
 
 {% block content %}
-<div class="container">
-  <h1 class="heading">Stock Returns Application</h1>
-  <p class="description">This application will return charts displaying price action and distribution of returns
-  over user specified timeframe.</p>
+
+  <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1439434768192-c60615c1b3c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c3RvY2slMjBtYXJrZXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Stock Returns Application</h1>
+            <span class="subheading">This application will return charts displaying price action and distribution of returns
+            over user specified timeframe.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
 
-</div>
-
-<div class="content">
+<div class="form-block">
     <h1 class="heading">Search for Stock with Valid Ticker Symbol</h1>
 
     {{ wtf.quick_form(form, novalidate=True) }}
 
 </div>
-<!--<div class="container text-center add">-->
-<!--<a href="{{ url_for('get_stock_data') }}" class="button">Get Stock Data</a>-->
-
-<!--</div>-->
 
 {% endblock %}
+
+
+</body>
+</html>
