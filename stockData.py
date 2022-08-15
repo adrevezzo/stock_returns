@@ -5,6 +5,7 @@ from dateutil.relativedelta import relativedelta
 import matplotlib.pyplot as plt
 import requests
 import creds
+import os
 
 ALPHA_STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 FINN_STOCK_ENDPOINT = "https://finnhub.io/api/v1/quote"
@@ -17,12 +18,13 @@ class StockData:
             'function': 'TIME_SERIES_INTRADAY',
             'symbol': STOCK,
             'interval':'1min',
-            'apikey': creds.ALPHA_STOCK_API_KEY
+            'apikey': os.environ.get('ALPHA_A_API_KEY')
         }
 
         self.finn_params ={
             'symbol': STOCK,
-            'token' : creds.FINN_STOCK_API_KEY,
+            # 'token' : creds.FINN_STOCK_API_KEY,
+            'token': os.environ.get('FINN_API_KEY')
             # 'X - Finnhub - Token': FINN_STOCK_ENDPOINT,
 
         }

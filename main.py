@@ -11,11 +11,12 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import creds
 import pandas as pd
+import os
 
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = creds.FLASK_KEY
+app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
 Bootstrap(app)
 
 
@@ -94,6 +95,16 @@ def get_stock_data():
 
 
     return render_template('search.html', form=form)
+
+@app.route("/blog")
+def blog():
+
+    return render_template('blog.html')
+
+
+@app.route("/login")
+def login():
+    return render_template('login.html')
 
 
 if __name__ == '__main__':
