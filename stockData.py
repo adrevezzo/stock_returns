@@ -1,10 +1,5 @@
 import pandas_datareader as web
-from datetime import datetime
-import pandas as pd
-from dateutil.relativedelta import relativedelta
-import matplotlib.pyplot as plt
 import requests
-import creds
 import os
 
 ALPHA_STOCK_ENDPOINT = "https://www.alphavantage.co/query"
