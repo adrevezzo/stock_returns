@@ -13,6 +13,9 @@ sandbox.py
 # credentials files
 creds.py
 
+# test file
+test.py
+
 # idea folder
 .idea/
 
