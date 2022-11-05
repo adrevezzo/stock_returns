@@ -20,26 +20,27 @@ Bootstrap(app)
 
 # *************** CREATE GET STOCK DATA FORM *****************
 
-class GetStockData(FlaskForm):
-    ticker = StringField('Stock Ticker', validators=[DataRequired()])
-    start_date = StringField('Start Date (mm/dd/yyyy)', validators=[DataRequired()])
-    end_date = StringField('End Date (mm/dd/yyyy)', validators=[DataRequired()])
-    ret_period = StringField('Return Period (days)', validators=[DataRequired()])
-
-    submit = SubmitField("Get Data")
+# class GetStockData(FlaskForm):
+#     ticker = StringField('Stock Ticker', validators=[DataRequired()])
+#     start_date = StringField('Start Date (mm/dd/yyyy)', validators=[DataRequired()])
+#     end_date = StringField('End Date (mm/dd/yyyy)', validators=[DataRequired()])
+#     ret_period = StringField('Return Period (days)', validators=[DataRequired()])
+#
+#     submit = SubmitField("Get Data")
 
 
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
 
-    form = GetStockData()
+    # form = GetStockData()
 
-    if form.validate_on_submit():
-        ticker = form.ticker.data
-        start = form.start_date.data
-        end = form.end_date.data
-        ret_per = int(form.ret_period.data)
+    if request.method == "POST":
+        data = request.form
+        ticker = data['ticker']
+        start = data['start_date']
+        end = data['end_date']
+        ret_per = int(data['ret_period'])
 
         # Create instance of StockData
         stock = StockData(ticker.upper())
@@ -86,7 +87,7 @@ def home():
 
 
 
-    return render_template('index.html', form=form)
+    return render_template('index.html')#, form=form)
 
 @app.route("/stockdata", methods=['GET', 'POST'])
 def get_stock_data():

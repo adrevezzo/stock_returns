@@ -1,31 +1,51 @@
 {% extends 'base.html' %}
-{% import "bootstrap/wtf.html" as wtf %}
 
 
 {% block content %}
 
-  <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1439434768192-c60615c1b3c8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c3RvY2slMjBtYXJrZXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Stock Returns Application</h1>
-            <span class="subheading">This application will return charts displaying price action and distribution of returns
-            over user specified timeframe.</span>
-          </div>
-        </div>
+
+<div class="hero-image">
+  <div class="hero-text">
+    <h1 style="font-size:50px">Stock Returns Application</h1>
+    <h3>This application will return charts displaying price action and distribution of returns
+            over user specified timeframe</h3>
+  </div>
+</div>
+
+
+
+<div class="input-form-all">
+
+  <h1 class="heading">Search for Stock with Valid Ticker Symbol</h1>
+  <div class="input-form">
+    <form name="sentMessage" id="contactForm" action="{{ url_for('home') }}" method="post" novalidate>
+      <div class="mb-3">
+        <label class="form-label">Stock Ticker</label>
+        <input class="form-control" type="text" name="ticker" placeholder="Example: TSLA">
       </div>
-    </div>
-  </header>
+      <div class="mb-3">
+        <label class="form-label">Start Date</label>
+        <input class="form-control" type="text" name="start_date" placeholder="Example: 01/01/2000">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">End Date</label>
+        <input class="form-control" type="text" name="end_date" placeholder="Example: Example: 11/01/2022">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Return Period</label>
+        <input class="form-control" type="text" name="ret_period" placeholder="Example: 25">
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-lg btn-outline-dark" id="sendMessageButton">Get Data</button>
+      </div>
+    </form>
+  </div>
 
-
-<div class="form-block">
-    <h1 class="heading">Search for Stock with Valid Ticker Symbol</h1>
-
-    {{ wtf.quick_form(form, novalidate=True) }}
 
 </div>
+
+
+
 
 {% endblock %}
 
