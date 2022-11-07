@@ -4,11 +4,11 @@
 {% block content %}
 
 
-<div class="hero-image">
-  <div class="hero-text">
-    <h1>Stock Returns Application</h1>
-    <h3>This application will return charts displaying price action and distribution of returns
-            over user specified timeframe</h3>
+<div class="hero">
+    <div class="container">
+      <h1 class="page-heading">Stock Returns Application</h1>
+      <h3 class="subheading">This application will return charts displaying price
+        action and distribution of returns over user specified timeframe.</h3>
   </div>
 </div>
 
@@ -16,7 +16,7 @@
 
 <div class="input-form-all">
 
-  <h1 class="heading">Search for Stock with Valid Ticker Symbol</h1>
+  <h1 class="section-heading">Search for Stock with Valid Ticker Symbol</h1>
   <div class="input-form">
     <form name="sentMessage" id="contactForm" action="{{ url_for('home') }}" method="post" novalidate>
       <div class="mb-3">

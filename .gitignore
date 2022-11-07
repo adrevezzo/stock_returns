@@ -16,6 +16,9 @@ creds.py
 # test file
 test.py
 
+# play files
+play*
+
 # idea folder
 .idea/
 
