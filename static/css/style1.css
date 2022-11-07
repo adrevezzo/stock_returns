@@ -1,11 +1,12 @@
 body {
-    font-family: 'Sawarabi Mincho', serif;
-    text-align: center;
-    background-color: #d1d1d1;
+  font-family: 'Sawarabi Mincho', serif;
+  margin: 0;
+  text-align: center;
+  background-color: #d1d1d1;
 }
 
 h2, h3, h4, h5, h6 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .hero {
@@ -16,11 +17,11 @@ h2, h3, h4, h5, h6 {
   background-size: cover;
   isolation: isolate;
   position: relative;
-  padding: 200px 0 200px;
+  padding: 150px 0 150px;
 }
 
 .hero::after {
-  content:'';
+  content: '';
   position: absolute;
   z-index: -1;
   inset: 0;
@@ -39,24 +40,45 @@ h2, h3, h4, h5, h6 {
 .subheading {
   color: white;
   font-family: 'Cinzel', serif;
-  font-size:24px;
+  font-size: 24px;
   font-weight: 300;
   line-height: 1.1;
   margin: 0 25%;
 }
 
-.input-form-all {
-  margin: 50px 0;
+.section-heading {
+  color: black;
+  font-weight: bold;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  padding-bottom: 15px;
 }
 
- .input-form {
-   margin: 0 30%;
- }
+.input-form-all {
+  margin: 25px 0 15px;
+}
 
- .section-heading {
-   color: black;
-   font-weight: bold;
-   font-size: 2.5rem;
-   line-height: 1.2;
+.input-form {
+  margin: 0 30%;
+}
 
- }
+.form-label {
+  font-size: 1.5rem;
+}
+
+.form-control {
+  font-size: 1.3rem;
+}
+
+#getStockDataButton {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  height: 50px;
+  width: 125px;
+}
+@media (max-width: 995px) {
+  .hero {
+    padding: 75px 0 75px;
+  }
+}
