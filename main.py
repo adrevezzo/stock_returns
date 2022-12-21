@@ -59,7 +59,7 @@ def home():
 
         # Create Price Action Chart
         ax1.set_title(f'{ticker.upper()} Closing Prices from {start} through {end}')
-        ax1.plot(df.index, df['Adj Close'], color='#7AD9FF')
+        ax1.plot(df.index, df['Close'], color='#7AD9FF')
 
 
         # ax2.set_title(f'Mean return is: {mean * 100: .2f}%\nLower 98% Conf return is: {nf_conf * 100: .2f}%'

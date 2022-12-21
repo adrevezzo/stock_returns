@@ -36,12 +36,12 @@ class StockData:
         self.ticker = STOCK
 
 
-    def get_historical_prices(self, start_date, end_date, source='yahoo'):
+    def get_historical_prices(self, start_date, end_date, source='stooq'):
 
         return web.DataReader(self.ticker, source, start_date, end_date)
 
     def calc_returns(self, df, day_offset):
-        df['returns'] = -1 * df['Adj Close'].diff(periods=-day_offset) / df['Adj Close']
+        df['returns'] = df['Close'].diff(periods=-day_offset) / df['Close'].shift(-1)
         stdev = df['returns'].std()
         mean = df['returns'].mean()
         nf_conf = mean - 2.33 * stdev
