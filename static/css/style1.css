@@ -29,8 +29,8 @@ a {
 }
 
 div.form-block {
-    margin: 50px 25%;
-
+    margin: 20px 25% 10px;
+    padding-bottom: 10px;
 }
 
 div.chart-output {
@@ -68,7 +68,7 @@ div.chart-data-output h2 {
 }
 
 header.masthead {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   background: no-repeat center center;
   background-color: #868e96;
   background-attachment: scroll;
@@ -84,20 +84,26 @@ header.masthead .overlay {
   width: 100%;
   background-color: #212529;
   opacity: 0.5;
+  z-index: 1;
+}
+
+header.masthead .container {
+  position: relative;
+  z-index: 2;
 }
 
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
-  padding: 200px 0 150px;
-  color: white;
+  padding: 60px 0 40px;
+  color: white !important;
 }
 
 @media only screen and (min-width: 768px) {
   header.masthead .page-heading,
   header.masthead .post-heading,
   header.masthead .site-heading {
-    padding: 200px 0;
+    padding: 70px 0 50px;
   }
 }
 
@@ -111,6 +117,7 @@ header.masthead .site-heading h1 {
   font-size: 50px;
   margin-top: 0;
   font-family: 'Cinzel', serif;
+  color: white !important;
 }
 
 
@@ -121,6 +128,7 @@ header.masthead .site-heading .subheading {
   display: block;
   margin: 10px 0 0;
   font-family: 'Cinzel', serif;
+  color: white !important;
 }
 
 @media only screen and (min-width: 768px) {
@@ -131,10 +139,13 @@ header.masthead .site-heading .subheading {
 
 
 #mainNav {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
   border-bottom: 1px solid #e9ecef;
   background-color: white;
-    font-family: 'Cinzel', serif;
+  font-family: 'Cinzel', serif;
 }
 
 #mainNav .navbar-brand {

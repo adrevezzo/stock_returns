@@ -12,6 +12,7 @@ sandbox.py
 
 # credentials files
 creds.py
+.env
 
 # test file
 test.py
