@@ -9,7 +9,7 @@ Bootstrap-Flask==2.3.3
 # Data processing and visualization
 pandas==2.2.3
 pandas-datareader==0.10.0
-yfinance==0.2.50
+yfinance>=1.1.0
 matplotlib==3.9.2
 
 # HTTP requests
